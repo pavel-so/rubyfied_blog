@@ -1,0 +1,52 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", users_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_user_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", user_path
+  .content
+    .inner
+      %p
+        %b
+          = t("activerecord.attributes.user.username", :default => t("activerecord.labels.username", :default => "Username"))
+          \:
+        = @user.username
+      %p
+        %b
+          = t("activerecord.attributes.user.email", :default => t("activerecord.labels.email", :default => "Email"))
+          \:
+        = @user.email
+      %p
+        %b
+          = t("activerecord.attributes.user.password_hash", :default => t("activerecord.labels.password_hash", :default => "Password hash"))
+          \:
+        = @user.password_hash
+      %p
+        %b
+          = t("activerecord.attributes.user.active", :default => t("activerecord.labels.active", :default => "Active"))
+          \:
+        = @user.active
+      %p
+        %b
+          = t("activerecord.attributes.user.activation_code", :default => t("activerecord.labels.activation_code", :default => "Activation code"))
+          \:
+        = @user.activation_code
+      %p
+        %b
+          = t("activerecord.attributes.user.reset_code", :default => t("activerecord.labels.reset_code", :default => "Reset code"))
+          \:
+        = @user.reset_code
+      %p
+        %b
+          = t("activerecord.attributes.user.banned", :default => t("activerecord.labels.banned", :default => "Banned"))
+          \:
+        = @user.banned
+      %p
+        %b
+          = t("activerecord.attributes.user.role_id", :default => t("activerecord.labels.role_id", :default => "Role"))
+          \:
+        = @user.role_id
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), user_path(@user), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+

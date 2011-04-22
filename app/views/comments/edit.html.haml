@@ -1,0 +1,13 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("back", :default => "Back")}", post_path(@comment.post)
+      %li.active= link_to "#{t("edit", :default => "Edit")}", edit_comment_path
+  .content
+    %h2.title
+      = t("edit", :default => "Edit")
+      Comment
+    .inner
+      = form_for @comment, :url => comment_path(@comment), :html => { :class => :form } do |f|
+        = render :partial => "form", :locals => {:f => f}
+

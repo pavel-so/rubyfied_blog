@@ -1,0 +1,7 @@
+.block
+  %h3 Useful Links
+  %ul.navigation
+    - Link.order("position ASC").all.each do |link|
+      %li
+        =link_to link.title, link.href, :target=>"_blank"
+

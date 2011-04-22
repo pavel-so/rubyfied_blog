@@ -1,0 +1,11 @@
+.group
+  = f.label :message, t("activerecord.attributes.comment.message", :default => "Message"), :class => :label
+  = f.text_area :message, :class => 'text_area'
+  %span.description Ex: a simple text
+.group.navform.wat-cf
+  %button.button{:type => "submit"}
+    = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("save", :default => "Save")}")
+    = t("save", :default => "Save")
+  %span.text_button_padding= t("or", :default => "or")
+  = link_to t("cancel", :default => "Cancel"), post_path(@comment.post), :class => "text_button_padding link_button"
+

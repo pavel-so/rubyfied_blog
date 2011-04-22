@@ -1,0 +1,36 @@
+=form_tag(user_path(@user),:class=>'form',:method=>'post') do
+  -if @user.errors.any?
+    %div.flash
+      %div.message.error
+        %h3
+          =pluralize(@user.errors.count, "error")
+          prohibited this user from being saved:
+        %ul
+          -@user.errors.full_messages.each do |msg|
+            %li
+              =msg
+  %div.columns.wat-cf
+    .column.left
+      .group
+        %label.label Login
+        =text_field :user, :username, :class=> 'text_field'
+        %span.description Ex: JohnSmith
+        %label.label Email
+        =text_field :user, :email, :class=> 'text_field'
+        %span.description Ex: john.smith@gmail.com
+
+    .column.right
+      .group
+        %label.label Password
+        =password_field  :user, :password, :class=> 'text_field'
+        %span.description Should be more than 8 letters
+        %label.label Password confirmation
+        =password_field :user, :password_confirmation, :class=> 'text_field'
+
+  %div.group.wat-cf
+    %div.left
+      %button.button{:type=>"submit"}
+        %img{:src=>"/images/icons/tick.png",:alt=>"Save"} Save
+      %a.button{:href=> users_path(:locale=>I18n.locale)}
+        %img{:src=>"/images/icons/cross.png",:alt=>"Cancel"} Cancel
+

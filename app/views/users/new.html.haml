@@ -1,0 +1,45 @@
+
+%div.block#block-signup
+  %h2 Sign up
+  %div.content
+    =form_tag(users_path,:class=>'form',:method=>'post') do
+
+      -if @user.errors.any?
+        %div.flash
+          %div.message.error
+            %h3
+              =pluralize(@user.errors.count, "error")
+              prohibited this user from being saved:
+            %ul
+              -@user.errors.full_messages.each do |msg|
+                %li
+                  =msg
+      %div.group.wat-cf
+        %div.left
+          %label.label Login
+        %div.right
+          =text_field :user, :username, :class=> 'text_field'
+          %span.description Ex: JohnSmith
+      %div.group.wat-cf
+        %div.left
+          %label.label Email
+        %div.right
+          =text_field :user, :email, :class=> 'text_field'
+          %span.description Ex: john.smith@gmail.com
+      %div.group.wat-cf
+        %div.left
+          %label.label Password
+        %div.right
+          =password_field  :user, :password, :class=> 'text_field'
+          %span.description Should be more than 8 letters
+      %div.group.wat-cf
+        %div.left
+          %label.label Password confirmation
+        %div.right
+          =password_field :user, :password_confirmation, :class=> 'text_field'
+
+      %div.group.wat-cf
+        %div.right
+          %button.button{:type=>"submit"}
+            %img{:src=>"/images/icons/tick.png",:alt=>"Save"} Signup
+

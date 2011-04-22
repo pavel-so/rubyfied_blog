@@ -1,0 +1,29 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li
+        %a
+          &nbsp;
+      %li= link_to("#{t("new", :default => "New")}", new_post_path) if logged_in?
+  .content
+    %h2.title
+      Posts
+    .inner
+      %ul.list
+        -@posts.each do |post|
+          %li
+            %h3
+              = link_to post.title, post_path(post)
+            =post.message.split('{CUT}')[0]
+            %p
+              .actions-bar.wat-cf
+                = "Published at"
+                =post.created_at.strftime('%d/%m/%Y %H:%M')
+              .wat-cf
+                = link_to 'Read more »',post_path(post),:class=>'button'
+
+      .actions-bar.wat-cf
+        .pagination
+          =link_to('« Previous 10', posts_path(:page=>params[:page]+1),:class=>"disabled prev_page") if @has_more
+          =link_to('Next 10 »', posts_path(:page=>params[:page]-1), :class=> 'next_page') if params[:page]>0
+

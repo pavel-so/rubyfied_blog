@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title Web App
+    = stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/drastic-dark/style", "web-app-theme/override", :cache => true
+    = csrf_meta_tag
+  %body
+    #container
+      .flash
+        - flash.each do |type, message|
+          %div{:class => "message #{type}"}
+            %p= message
+
+      #box
+        = yield
+

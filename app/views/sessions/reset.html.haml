@@ -1,0 +1,32 @@
+- if @user
+  %h1 Rubyfied Blog
+  %div.block#block-login
+    %h2 New Password Form
+    %div.content.login
+      = form_tag  reset_path,:class=>'form login',:method=>'post' do
+        -if @user.errors.any?
+          %div.flash
+            %div.message.error
+              %h3
+                =pluralize(@user.errors.count, "error")
+                prohibited this user from being saved:
+              %ul
+                -@user.errors.full_messages.each do |msg|
+                  %li
+                    =msg
+        = hidden_field_tag 'uid',params[:uid]
+        = hidden_field_tag 'reset_token',params[:reset_token]
+        %div.group.wat-cf
+          %div.left
+            %label.label.right Password
+          %div.right
+            = password_field 'user', 'password',{:class=>'text_field'}
+        %div.group.wat-cf
+          %div.left
+            %label.label.right Password Confirmation
+          %div.right
+            = password_field 'user','password_confirmation',{:class=>'text_field'}
+        %div.group.navform.wat-cf
+          %div.right
+            %button.button{:type=>"submit"}>
+              %img{:src=>"/images/icons/key.png",:alt=>"Save"} Save

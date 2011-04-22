@@ -1,0 +1,27 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", links_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_link_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", link_path
+  .content
+    .inner
+      %p
+        %b
+          = t("activerecord.attributes.link.href", :default => t("activerecord.labels.href", :default => "Href"))
+          \:
+        = @link.href
+      %p
+        %b
+          = t("activerecord.attributes.link.title", :default => t("activerecord.labels.title", :default => "Title"))
+          \:
+        = @link.title
+      %p
+        %b
+          = t("activerecord.attributes.link.position", :default => t("activerecord.labels.position", :default => "Position"))
+          \:
+        = @link.position
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_link_path(@link), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), link_path(@link), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+

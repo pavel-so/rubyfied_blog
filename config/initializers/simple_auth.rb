@@ -1,0 +1,1 @@
+require File.join(::Rails.root.to_s,'lib','simple_auth.rb')

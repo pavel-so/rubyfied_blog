@@ -1,0 +1,46 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Back", posts_path(:page=>params[:page])
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_post_path  if logged_in?
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", post_path
+  .content
+    .inner
+      %h3
+        %b
+          = @post.title
+      %p
+        = @post.message.gsub("{CUT}",'')
+      - if logged_in?
+        .wat-cf
+          = link_to image_tag("icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_post_path(@post), :class => "button"
+          = link_to image_tag("icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), post_path(@post), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+    .inner
+      %h3
+        Comments
+      %ul.list
+        - for comment in @comments
+          %li
+            -if logged_in?
+              .left
+                =link_to 'Edit', edit_comment_path(comment)
+                %br
+                =link_to 'Delete',comment, :method => :delete, :confirm => "#{t("confirm", :default => "Are you sure?")}"
+                %br
+                =link_to 'Publish',publish_comment_path(comment) unless comment.published?
+            .item
+              %p
+                = comment.message
+        %li
+          = form_for @comment, :url=>(post_comments_path(@post)), :html => { :class => :form } do |f|
+            .columns.wat-cf
+              .column.left
+                .group
+                  = f.label :message, t("activerecord.attributes.comment.add_comment", :default => "Add comment:"), :class => :label
+                  = f.text_area :message, :class => 'text_area',:rows=>10,:cols=>80
+                  %span.description Ex: a simple text
+                  .group.navform.wat-cf
+                    %button.button{:type => "submit"}
+                      = image_tag("icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+                      = t("web-app-theme.add_comment", :default => "Add comment")
+

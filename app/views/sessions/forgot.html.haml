@@ -1,0 +1,20 @@
+%h1 Rubyfied Blog
+%div.block#block-login
+  %h2 Forgot Password
+  %div.content.login
+    = form_tag  forgot_path,:class=>'form login',:method=>'post' do
+      %div.group.wat-cf
+        %br
+        %div.left
+          %label.label.right Email
+        %div.right
+          = text_field 'user', 'email',{:class=>'text_field'}
+          %span.description Enter your registration email
+      %div.group.navform.wat-cf
+        %div.right
+          %button.button{:type=>"submit"}>
+            %img{:src=>"/images/icons/key.png",:alt=>"Save"} Reset
+      %div.group.wat-cf
+        %div.right
+          %b
+            = link_to 'SignUp', register_path

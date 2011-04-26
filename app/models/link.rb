@@ -12,7 +12,8 @@ class Link < ActiveRecord::Base
 
   def initialize(params={})
     super(params)
-    self.position=Link.maximum(:position)+1
+    max=Link.maximum(:position)||0
+    self.position=max+1
   end
   def is_top?
     position==Link.minimum(:position)

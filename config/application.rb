@@ -44,7 +44,7 @@ module RubyfiedBlog
         :port => 587,
         :domain => 'gmail.com',
         :user_name => 'informer.email@gmail.com',
-        :password => '*******',
+        :password => 'sbqcaiad',
         :authentication => 'plain',
         :enable_starttls_auto => true}
 
